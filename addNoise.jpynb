@@ -1,18 +1,13 @@
-# ADD NOISE GK2
 from skimage.util import random_noise 
 from skimage import io
-from skimage import color, data, img_as_float, img_as_uint
+from skimage import  img_as_float, img_as_uint
 
-# imgPath = "/content/drive/My Drive/TEZ/Gtrk_SA1_singleBand.tif"
-imgPath = "/content/drive/My Drive/TEZ/Spot5_2013-05-20.tif"
+imgPath = "../imageB.tif"
 Img = io.imread(imgPath)
-Img = Img[:,:,1]
 ImgFloat = img_as_float(Img)
 
 #Add Gaussian noise:
-
-# variance = 0.0008**2
-variance = 0.04**2
+variance = 0.0008**2
 g_noised_image = random_noise(ImgFloat, mode='gaussian', var=variance)
-# io.imsave("/content/drive/My Drive/TEZ/Gtrk_SA1_GaussianNoisy2.tif",img_as_uint(g_noised_image))
-io.imsave("/content/drive/My Drive/TEZ/Spot5_2013-05-20_GaussianNoisy2.tif",img_as_uint(g_noised_image))
+io.imsave("../imageB_GaussianNoisy.tif",img_as_uint(g_noised_image))
+
