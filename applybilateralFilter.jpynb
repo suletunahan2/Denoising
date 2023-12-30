@@ -1,0 +1,20 @@
+import sys
+import cv2
+import numpy as np
+
+# imgPath = "/content/drive/My Drive/TEZ/Gtrk_SA1_GaussianNoisy2.tif"
+# fn = "Gtrk_SA1_GaussianNoisy2"
+imgPath = "/content/drive/My Drive/TEZ/Spot5_2013-05-20_GaussianNoisy2.tif"
+fn = "Spot5_2013-05-20_GaussianNoisy2"
+MAX_KERNEL_LENGTH = 100
+
+Img2 = cv2.imread(imgPath,-1)
+
+# for i in range(1, MAX_KERNEL_LENGTH, 2):
+filtSize = 30
+sigmaC = 300
+sigmaS =  filtSize
+bilateralImg2 = cv2.bilateralFilter(Img2.astype('float32'), filtSize, sigmaC ,sigmaS)
+outputFname2 = f"/content/drive/My Drive/TEZ/{fn}_opencv_Bilateral_filtSize_{filtSize}_sigmaC_{sigmaC}_sigmaS_{sigmaS}.tif"
+print(f'outputFname2 =  {outputFname2}')
+cv2.imwrite(outputFname2, bilateralImg2.astype('uint16'))
