@@ -1,0 +1,23 @@
+## for zoom show
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1.inset_locator import zoomed_inset_axes
+from mpl_toolkits.axes_grid1.inset_locator import mark_inset
+from scipy import misc
+
+# your Image
+g_noised_image = ..
+
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.imshow(g_noised_image,extent=[0,2471,0,1830], aspect=(1))
+
+axins = zoomed_inset_axes(ax, 5, loc=3)
+axins.imshow(g_noised_image, extent=[0,2471,0,1830],aspect=(1))
+axins.set_xlim(250, 450)
+axins.set_ylim(1250, 1450)
+plt.xticks(visible=False)
+plt.yticks(visible=False)
+
+mark_inset(ax, axins, loc1=2, loc2=1, fc="none", ec="0.5")
+plt.draw()
+plt.show()
